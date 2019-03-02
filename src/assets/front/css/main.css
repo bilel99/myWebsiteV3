@@ -169,6 +169,11 @@
     margin-bottom: -1em;
     padding: 2rem 0;
   }
+
+  #blog-card {
+    width: 256px;
+    height: 386px;
+  }
   
   .portfolio-card .mdl-card__title {
     padding-bottom: 0;
@@ -182,6 +187,10 @@
   img.article-image-portfolio-page {
     width: 250px;
     height: 300px;
+  }
+
+  .blog-card .mdl-card__title {
+    padding-bottom: 0;
   }
 
   img.article-image-view-page {

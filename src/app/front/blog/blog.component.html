@@ -1,0 +1,66 @@
+<!-- TODO 
+Quand blog === 0 
+    mettre une petite image au milieu de la page 
+    pour montrer qu'il n'y a aucun contenu pour l'instant!
+    avec un text en plus en bas "aucun contenu pour l'instant :-("
+-->
+<div class="site-content">
+        <div class="container">
+            <div class="mdl-grid site-max-width">
+                <div *ngFor="let row of blog">    
+                    
+                    <section class="section--center mdl-grid site-max-width" id="my_blog_{{row.id}}">
+                        <div class="blog-card mdl-card mdl-cell mdl-cell--12-col-desktop mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-shadow--8dp" id="blog-card">
+    
+                            <div *ngIf="row.media.length != 0">
+                                <div class="mdl-card__media">
+                                    <img class="article-image" src="{{ row.media[0].filename }}" border="0" alt="" width="20" height="20">
+                                </div>
+                            </div>
+                
+                            <div *ngIf="row.media.length == 0">
+                                <div class="mdl-card__media">
+                                    <img class="article-image" src="../../../assets/front/img/default_blog.png" border="0" alt="{{ row.titre }}">
+                                </div>
+                            </div>
+    
+                            <div class="mdl-card__title">
+                                <h2 class="mdl-card__title-text">
+                                    {{ row.titre }} 
+                                </h2>
+                            </div>
+                
+                            <div class="mdl-card__supporting-text">
+                                {{ row.introduction | truncate:[35, '...'] }}
+                            </div>
+    
+                            <br>        
+                            <div class="mdl-card__actions mdl-card--border">
+                                <div class="mdl-layout-spacer"></div>
+                                <a class="mdl-button mdl-button--icon mdl-button--colored " routerLink="{{ row.id }}">
+                                    <i class="material-icons" id="material_icons_">import_contacts</i>
+                                </a>
+    
+                                <div class="mdl-layout-spacer"></div>
+                                <a class="mdl-button mdl-button--icon mdl-button--colored " href="edit-blog/{{ row.id }}"> 
+                                    <i class="material-icons" id="material_icons_">border_color</i>
+                                </a>
+    
+                                <div class="mdl-layout-spacer"></div>
+                                <span class="mdl-button mdl-button--icon mdl-button--colored " (click)="onRemoveBlog(row.id)"><i class="material-icons" id="material_icons_{{row.id}}">delete</i></span>
+    
+                                <div class="mdl-layout-spacer"></div>
+                            </div>
+    
+                        </div>
+                    </section>
+                </div>
+    
+                <!-- Colored FAB button with ripple -->
+                <a class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" href="create-blog">
+                    <i class="material-icons">add</i>
+                </a>
+    
+            </div>
+        </div>
+    </div>
