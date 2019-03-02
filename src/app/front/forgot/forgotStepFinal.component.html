@@ -1,0 +1,85 @@
+<div class="site-content">
+    <div class="mdl-grid site-max-width">
+        <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp page-content">
+            <div class="mdl-card__title">
+                <h1 class="mdl-card__title-text">Mot de passe oublié étape final</h1>
+            </div>
+            
+            <div class="mdl-card__media">
+                <img class="article-image" src="../../assets/front/img/contact.jpg" border="0" alt="Forgot pass">
+            </div>
+                
+            <div class="mdl-grid site-copy">
+                <div class="mdl-cell mdl-cell--12-col">
+                    <div class="mdl-card__supporting-text">
+                        <!-- Fil d'étapes ETAPE 2 -->
+                        <div class="demo-card-square mdl-card mdl-shadow--2dp mdl-cell--12-col">
+                            <div class="mdl-card__title mdl-card--expand">
+                                <h2 class="mdl-card__title-text">Etapes 2</h2>
+                            </div>
+                            <div class="mdl-card__supporting-text">
+                                <p>Vous avez presque fini !</p>
+                            </div>
+                        </div>
+    
+                        <!-- Error general -->
+                        <span *ngIf="error" class="error-message">
+                            {{error}}
+                        </span>
+    
+                        <form method="POST" class="form-contact" (ngSubmit)="onSubmit(email, forgot, password)" #forgotStepFinalForm="ngForm">
+
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" 
+                                type="email"
+                                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                                required
+                                [(ngModel)]="email"
+                                name="email"
+                                #name="ngModel">
+                                <label class="mdl-textfield__label" for="Name">Email ...</label>
+                                    
+                                <!-- Error pannel -->
+                                <span [hidden]="name.email || name.pristine" class="mdl-textfield__error">Email invalide</span>
+                            </div>
+                                
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" 
+                                type="password"
+                                required
+                                [(ngModel)]="forgot"
+                                name="forgot"
+                                #name="ngModel">
+                                <label class="mdl-textfield__label" for="forgot">forgot field ...</label>
+            
+                                <!-- Error pannel -->
+                                <span [hidden]="name.forgot || name.pristine" class="mdl-textfield__error">Mot de passe inconnue</span>
+                            </div>
+
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" 
+                                type="password"
+                                required
+                                [(ngModel)]="password"
+                                name="password"
+                                #name="ngModel">
+                                <label class="mdl-textfield__label" for="Email">Password ...</label>
+
+                                <!-- Error pannel -->
+                                <span [hidden]="name.password || name.pristine" class="mdl-textfield__error">Mot de passe inconnue</span>
+                            </div>
+    
+                            <p>
+                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent mdl-cell--12-col" [disabled]="!forgotStepFinalForm.form.valid" type="submit">
+                                    Valider
+                                </button>
+                            </p>
+                        </form>
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    

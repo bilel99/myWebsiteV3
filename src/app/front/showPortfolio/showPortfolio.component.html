@@ -1,0 +1,73 @@
+
+<div *ngFor="let row of portfolio " class="site-content">
+  <div class="mdl-grid site-max-width">
+    <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp page-content">
+      <div class="mdl-card__title">
+        <h1 class="mdl-card__title-text">{{ row.titre }}</h1>
+      </div>
+
+      <div *ngIf="row.media.length != 0">
+        <div class="mdl-card__media">
+          <img class="article-image-view-page" src="{{ row.media[0].filename }}" border="0" alt="{{ row.media[0].nom }}">
+        </div>
+      </div>
+
+      <div *ngIf="row.media.length == 0">
+          <div class="mdl-card__media">
+              <img class="article-image-view-page" src="../../../assets/front/img/addProjetPortfolio.png" border="0" alt="{{ row.titre }}">
+          </div>
+      </div>
+
+      <div class="mdl-grid site-copy">
+        <div class="mdl-cell mdl-cell--12-col">
+          <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">Introduction</h3>
+          <div class="mdl-cell mdl-cell--10-col mdl-card__supporting-text no-padding ">
+            <p>{{ row.description }}</p>
+          </div>
+
+          <div class="mdl-grid">
+            <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">Rôle</h3>
+            <div class="mdl-cell mdl-cell--6-col mdl-card__supporting-text no-padding ">
+              <p>{{ row.role }}</p>
+            </div>
+
+              <div class="mdl-cell mdl-cell--6-col">
+                
+                <div *ngIf="row.media.length != 0">
+                  <img class="article-image-view-page" src="{{ row.media[1].filename }}" border="0" alt="{{ row.media[1].nom }}">
+                </div>
+                <div *ngIf="row.media.length == 0">
+                  <img class="article-image-view-page" src="../../../assets/front/img/addProjetPortfolio.png" border="0" alt="{{ row.titre }}">
+                </div>
+
+              </div>
+          </div>
+
+          <div class="mdl-grid">
+            <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">Client</h3>
+            <div class="mdl-cell mdl-cell--6-col">
+              <div *ngIf="row.media.length != 0">
+                <img class="article-image-view-page" src="{{ row.media[2].filename }}" border="0" alt="{{ row.media[2].nom }}">
+              </div>
+              <div *ngIf="row.media.length == 0">
+                <img class="article-image-view-page" src="../../../assets/front/img/addProjetPortfolio.png" border="0" alt="{{ row.titre }}">
+              </div>
+
+            </div>
+            <div class="mdl-cell mdl-cell--6-col mdl-card__supporting-text no-padding ">
+              <p>{{ row.client }}</p>
+            </div>
+          </div>
+
+          <div class="mdl-grid">
+            <h3 class="mdl-cell mdl-cell--12-col mdl-typography--headline">Période</h3>
+            <div class="mdl-cell mdl-cell--9-col mdl-card__supporting-text no-padding ">
+              <p>La période de ma mission est {{ row.date_debut }} - {{ row.date_fin }}</p>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

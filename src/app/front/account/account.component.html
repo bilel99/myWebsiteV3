@@ -1,0 +1,140 @@
+<div class="site-content">
+    <div class="mdl-grid site-max-width">
+        <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp page-content">
+            <div class="mdl-card__title">
+                <h1 class="mdl-card__title-text">
+                    Bienvenue sur votre profil {{ user.prenom }}
+                </h1>
+            </div>
+            
+            <div class="mdl-card__media">
+                <img class="article-image" src="../../assets/front/img/contact.jpg" border="0" alt="Profil">
+                <div *ngIf="avatar">
+                    <img class="avatar-profil-circle responsive-img" src="{{avatar}}" alt="Profil">
+                </div>
+            </div>
+            
+            <div class="mdl-grid site-copy">
+                <div class="mdl-cell mdl-cell--12-col">
+                    <div class="mdl-card__supporting-text">
+                        
+                        <p></p>
+
+                        <!-- Error general -->
+                        <span *ngIf="error" class="error-message">
+                            {{error}}
+                        </span>
+
+                        <form method="PUT" class="form-contact" (ngSubmit)="onSubmit(nom, prenom, sexe, date_naissance, mobile, ville_id, media_id)" #profilForm="ngForm" enctype="multipart/form-data">
+
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" 
+                                type="text"
+                                [(ngModel)]="nom"
+                                name="nom"
+                                #name="ngModel">
+                                <label class="mdl-textfield__label" for="nom">Nom ...</label>
+                            </div>
+
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" 
+                                type="text"
+                                [(ngModel)]="prenom"
+                                name="prenom"
+                                #name="ngModel">
+                                <label class="mdl-textfield__label" for="prenom">Prenom ...</label>
+                            </div>
+
+                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
+                                <input type="radio" 
+                                class="mdl-radio__button" 
+                                [(ngModel)]="sexe"
+                                id="option-1"
+                                name="sexe" 
+                                value="M"
+                                #name="ngModel"
+                                checked>
+                                <span class="mdl-radio__label">M</span>
+                            </label>
+                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
+                                <input type="radio" 
+                                class="mdl-radio__button" 
+                                [(ngModel)]="sexe"
+                                id="option-2"
+                                name="sexe" 
+                                value="F"
+                                #name="ngModel">
+                                <span class="mdl-radio__label">F</span>
+                            </label>
+
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" 
+                                type="date"
+                                [(ngModel)]="date_naissance"
+                                name="date_naissance"
+                                #name="ngModel">
+                                <label class="mdl-textfield__label" for="date_naissace">Date de naissance ...</label>
+                            </div>
+
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" 
+                                type="number"
+                                [(ngModel)]="mobile"
+                                name="mobile"
+                                #name="ngModel">
+                                <label class="mdl-textfield__label" for="mobile">Mobile ...</label>
+                            </div>
+
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" 
+                                type="text"
+                                pattern="\d*"
+                                [maxLength] = "5"
+                                [(ngModel)]="codePostal"
+                                name="codePostal"
+                                id="codePostal"
+                                (keyup)="getVilleFromCp(codePostal)"
+                                #name="ngModel">
+                                <label class="mdl-textfield__label" for="cp">Code Postal ...</label>
+
+                                <!-- Error pannel -->
+                                <span [hidden]="name.codePostal || name.pristine" class="mdl-textfield__error">Champ incorrect, uniquement les nombres son accepté</span>
+                            </div>
+
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" 
+                                type="text"
+                                disabled
+                                value="{{ villeLibelle }}">
+                            </div>
+
+                            <input class="mdl-textfield__input" 
+                            type="hidden"
+                            disabled
+                            [(ngModel)]="ville_id"
+                            name="ville_id"
+                            #name="ngModel"
+                            value="{{ villeId }}">
+                        
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" 
+                                type="file"
+                                name="filename"
+                                id="filename"
+                                (change)="onFileSelected($event)">
+                                <label class="mdl-textfield__label" for="file">Votre avatar ...</label>
+                            </div>
+                            
+                            <p>
+                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent mdl-cell--12-col" [disabled]="!profilForm.form.valid" type="submit">
+                                    Valider
+                                </button>
+                            </p>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

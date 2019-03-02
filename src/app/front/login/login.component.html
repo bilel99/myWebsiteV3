@@ -1,0 +1,71 @@
+<div class="site-content">
+    <div class="mdl-grid site-max-width">
+        <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp page-content">
+            <div class="mdl-card__title">
+              <h1 class="mdl-card__title-text">Login</h1>
+            </div>
+            
+            <div class="mdl-card__media">
+                <img class="article-image" src="../../assets/front/img/contact.jpg" border="0" alt="Login">
+            </div>
+            
+            <div class="mdl-grid site-copy">
+                <div class="mdl-cell mdl-cell--12-col">
+                    <div class="mdl-card__supporting-text">
+                        <p>Merci de bien vouloir vous authentifier pour accèder au services supplémentaires</p>
+
+                        <!-- Error general -->
+                        <span *ngIf="error" class="error-message">
+                            {{error}}
+                        </span>
+
+                        <form method="POST" class="form-contact" (ngSubmit)="onLogin($event)" #loginForm="ngForm">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" 
+                                type="email"
+                                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                                required
+                                [(ngModel)]="email"
+                                name="email"
+                                #name="ngModel">
+                                <label class="mdl-textfield__label" for="email">Email ...</label>
+                                
+                                <!-- Error pannel -->
+                                <span [hidden]="name.email || name.pristine" class="mdl-textfield__error">Email invalide</span>
+                            </div>
+
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" 
+                                type="password"
+                                required
+                                [(ngModel)]="password"
+                                name="password"
+                                #name="ngModel">
+                                <label class="mdl-textfield__label" for="password">Password ...</label>
+
+                                <!-- Error pannel -->
+                                <span [hidden]="name.password || name.pristine" class="mdl-textfield__error">Mot de passe inconnue</span>
+                            </div>
+                            
+                            <p>
+                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent mdl-cell--12-col" [disabled]="!loginForm.form.valid" type="submit">
+                                    Log'in
+                                </button>
+                            </p>
+                        </form>
+
+                        <ul class='mdl-list'>
+                            <li class="mdl-list__item">
+                                <a routerLink="/forgot" class="mdl-cell--12-col ">Mot de passe oublié</a>
+                            </li>
+                            <li class="mdl-list__item">
+                                <a routerLink="/register" class="mdl-cell--12-col ">Je m'inscris</a>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

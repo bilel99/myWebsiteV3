@@ -1,0 +1,211 @@
+<div *ngIf="lengthCv == 0">
+    <div class="site-content">    
+        <div class="mdl-grid mdl-cell mdl-cell--12-col">
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                Je créer mon CV
+            </button>
+        </div>
+    </div>    
+</div>
+<div *ngIf="lengthCv != 0">
+    <div class="site-content">    
+        <div *ngFor="let row of cv" class="mdl-grid mdl-cell mdl-cell--12-col">
+
+            <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp mdl-color--blue mdl-cell mdl-cell--4-col">
+                
+                
+                <div *ngIf="row.media_id == NULL" class="my-image-cv">
+                    <img src="../../../assets/front/img/default_cv.png" border="0" alt="Default Image CV">
+                </div>
+                <div *ngIf="row.media_id != NULL" class="my-image-cv">
+                    <img src="{{row.media.filename}}" border="0" alt="{{row.media.nom}}">
+                </div>
+                
+                <div class="my-poste">
+                    <h4>{{row.titre}}</h4>
+                </div>
+
+                <div class="my-adress-icon">
+                    <div class="mdl-cell mdl-cell--4-col">
+                        <i class="material-icons">person</i>
+                    </div>
+                </div>
+                <div class="mdl-cell mdl-cell--8-col">
+                    <ul class="my-adress">
+                        <li>{{row.adresse}}</li>
+                        <li>{{row.ville}}</li>
+                        <li>Nationalité : {{row.nationalite}}</li>
+                        <li>{{row.permis}}</li>
+                        <li>{{row.situation}}</li>
+                    </ul>
+                </div>
+
+                <div class="my-phone-icon">
+                    <div class="mdl-cell mdl-cell--4-col">
+                        <i class="material-icons">phone</i>
+                    </div>
+                </div>
+                <div class="mdl-cell mdl-cell--8-col">
+                    <ul class="my-number-phone">
+                        <li>{{row.mobile}}</li>
+                    </ul>
+                </div>
+
+                <div class="my-mail-icon">
+                    <div class="mdl-cell mdl-cell--4-col">
+                        <i class="icon-my-mail material-icons">email</i>
+                    </div>
+                </div>
+                <div class="mdl-cell mdl-cell--8-col">
+                    <ul class="my-mail">
+                        <li><span>{{row.email}}</span></li>
+                    </ul>
+                </div> 
+
+                <div class="my-website-icon">
+                    <div class="mdl-cell mdl-cell--4-col">
+                        <i class="material-icons">explore</i>
+                    </div>
+                </div>
+                <div class="mdl-cell mdl-cell--8-col">
+                    <ul class="my-website">
+                        <li>www.bilel-bekkouche.fr</li>
+                    </ul>
+                </div>
+
+                <div class="mdl-cell mdl-cell--12-col">
+                    <p class="my-cv-other">{{row.description}}</p>
+                    
+                    <!-- Button for Edit CV -->
+                    <a class="cv-button-edit mdl-button mdl-js-button mdl-button--raised mdl-button--colored" href="edit-cv/{{row.id}}">
+                        <span class="cv-button-edit-text">Je modifie mon CV</span>
+                    </a>
+                </div>
+
+            </section>
+
+            <div class="mdl-cell mdl-cell--8-col">
+
+                <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp mdl-color--white">
+                    <div class="mdl-card mdl-cell mdl-cell--12-col">
+                        <div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
+                            <h4 class="mdl-cell mdl-cell--12-col">Formation</h4>
+                            <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
+                                <i class="material-icons">
+                                    local_library
+                                </i>
+                            </div>
+                            <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+                                <ul *ngFor="let form of row.formation">
+                                    <li>
+                                        <h5>{{form.sujet}}</h5>
+                                        {{form.date_debut | date}} - {{form.date_fin | date}} 
+                                        <br />
+                                        <a href="#">{{form.ecole}}</a>
+                                        <br />
+                                        {{form.titre}}
+                                    </li>
+                                </ul>
+                            </div> 
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp mdl-color--white">
+                    <div class="mdl-card mdl-cell mdl-cell--12-col">
+                        <div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
+                            <h4 class="mdl-cell mdl-cell--12-col">Compétence</h4>
+                            <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
+                                <i class="material-icons">
+                                    work
+                                </i>
+                            </div>
+                            <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+                                <ul *ngFor="let groupComp of groupCompetence">
+                                    <li>
+                                        <div class="group-competence">
+                                            <h5>{{groupComp.nom}}</h5>
+                                            <ul *ngFor="let comp of row.competence">
+                                                <li>
+                                                    <h5>{{comp.savoir}}</h5>
+                                                    <progress id="avancement" value="{{comp.niveau | calcLevel}}" max="100"></progress>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div> 
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp mdl-color--white">
+                    <div class="mdl-card mdl-cell mdl-cell--12-col">
+                        <div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
+                            <h4 class="mdl-cell mdl-cell--12-col">Expérience</h4>
+                            <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
+                                <i class="material-icons">
+                                    computer
+                                </i>
+                            </div>
+                            <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+                                <ul *ngFor="let exp of row.experience">
+                                    <li>
+                                        <h5>{{exp.sujet}}</h5>
+                                        {{exp.date_debut | date}} - {{exp.date_fin | date}}
+                                        <br />
+                                        {{exp.contrat}} <a href="#">{{exp.titre}}</a>
+                                        <br />
+                                        {{exp.description}}
+                                    </li> 
+                                </ul>
+                            </div> 
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp mdl-color--white">
+                    <div class="mdl-card mdl-cell mdl-cell--12-col">
+                        <div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
+                            <h4 class="mdl-cell mdl-cell--12-col">Langues</h4>
+                            <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
+                                <i class="material-icons">
+                                    language
+                                </i>
+                            </div>
+                            <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+                                <ul *ngFor="let lang of row.competence_langue">
+                                    <li>
+                                        <h5>{{lang.langue}}</h5>
+                                        <progress id="avancement" value="{{lang.niveau | calcLevel}}" max="100"></progress>
+                                    </li>
+                                </ul>
+                            </div> 
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp mdl-color--white">
+                    <div class="mdl-card mdl-cell mdl-cell--12-col">
+                        <div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
+                            <h4 class="mdl-cell mdl-cell--12-col"> Loisir</h4>
+                            <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
+                                <i class="material-icons">
+                                    extension
+                                </i>
+                            </div>
+                            <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+                                <ul *ngFor="let lois of row.loisir">
+                                    <li>
+                                        <h5>{{lois.loisir}}</h5>
+                                    </li>
+                                </ul>
+                            </div> 
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+        </div>
+    </div>
+</div>

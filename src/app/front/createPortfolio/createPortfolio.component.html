@@ -1,0 +1,147 @@
+<div class="site-content">
+        <div class="mdl-grid site-max-width">
+            <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp page-content">
+                <div class="mdl-card__title">
+                    <h1 class="mdl-card__title-text">
+                        Création d'un projet sur votre portfolio
+                    </h1>
+                </div>
+                
+                <div class="mdl-card__media">
+                    <img class="article-image" src="../../assets/front/img/contact.jpg" border="0" alt="Profil">
+                    <div *ngIf="avatar">
+                        <img class="avatar-profil-circle responsive-img" src="../../../assets/front/img/contact.jpg" alt="Création portfolio">
+                    </div>
+                </div>
+                
+                <div class="mdl-grid site-copy">
+                    <div class="mdl-cell mdl-cell--12-col">
+                        <div class="mdl-card__supporting-text">
+                            
+                            <p></p>
+    
+                            <!-- Error general -->
+                            <span *ngIf="error" class="error-message">
+                                {{error}}
+                            </span>
+    
+                            <form method="POST" class="form-contact" (ngSubmit)="onSubmit(user_id, titre, description, role, client, date_debut, date_fin, filename, filename2, filename3)" #portfolioForm="ngForm" enctype="multipart/form-data">
+    
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input class="mdl-textfield__input" 
+                                    type="text"
+                                    [(ngModel)]="titre"
+                                    name="titre"
+                                    #name="ngModel">
+                                    <label class="mdl-textfield__label" for="titre">titre ...</label>
+                                </div>
+    
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <textarea 
+                                    class="mdl-textfield__input" 
+                                    type="text" 
+                                    rows= "3" 
+                                    [(ngModel)]="description"
+                                    name="description"
+                                    #name="ngModel"></textarea>
+                                    <label class="mdl-textfield__label" for="description">description ...</label>
+                                </div>
+    
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <textarea 
+                                    class="mdl-textfield__input" 
+                                    type="text" 
+                                    rows= "3" 
+                                    [(ngModel)]="role"
+                                    name="role"
+                                    #name="ngModel"></textarea>
+                                    <label class="mdl-textfield__label" for="role">role ...</label>
+                                </div>                            
+
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <textarea 
+                                    class="mdl-textfield__input" 
+                                    type="text" 
+                                    rows= "3" 
+                                    [(ngModel)]="client"
+                                    name="client"
+                                    #name="ngModel"
+                                     ></textarea>
+                                    <label class="mdl-textfield__label" for="sample5">client ...</label>
+                                </div>                            
+    
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input class="mdl-textfield__input" 
+                                    type="date"
+                                    [(ngModel)]="date_debut"
+                                    name="date_debut"
+                                    #name="ngModel">
+                                    <label class="mdl-textfield__label" for="date_debut">date de début de contrat ...</label>
+                                </div>
+
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input class="mdl-textfield__input" 
+                                    type="date"
+                                    [(ngModel)]="date_fin"
+                                    name="date_fin"
+                                    #name="ngModel">
+                                    <label class="mdl-textfield__label" for="date_fin">date de fin de contrat ...</label>
+                                </div>
+                            
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input class="mdl-textfield__input" 
+                                    type="file"
+                                    name="filename"
+                                    multiple
+                                    (change)="onFileSelectedFilename($event)">
+                                    <label class="mdl-textfield__label" for="file">insérer une/des image(s) ...</label>
+                                </div>
+
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input class="mdl-textfield__input" 
+                                    type="file"
+                                    name="filename2"
+                                    multiple
+                                    (change)="onFileSelectedFilename2($event)">
+                                    <label class="mdl-textfield__label" for="file">insérer une/des image(s) ...</label>
+                                </div>
+
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input class="mdl-textfield__input" 
+                                    type="file"
+                                    name="filename3"
+                                    multiple
+                                    (change)="onFileSelectedFilename3($event)">
+                                    <label class="mdl-textfield__label" for="file">insérer une/des image(s) ...</label>
+                                </div>
+
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input class="mdl-textfield__input" 
+                                    type="hidden"
+                                    [(ngModel)]="user_id"
+                                    name="user_id"
+                                    #name="ngModel">
+                                </div>
+
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input class="mdl-textfield__input" 
+                                    type="hidden"
+                                    [(ngModel)]="auto_increment"
+                                    name="auto_increment"
+                                    #name="ngModel">
+                                </div>
+                                
+                                <p>
+                                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent mdl-cell--12-col" [disabled]="!portfolioForm.form.valid" type="submit">
+                                        Valider
+                                    </button>
+                                </p>
+                            </form>
+    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    

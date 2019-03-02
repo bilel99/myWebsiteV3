@@ -1,0 +1,434 @@
+<div class="site-content">
+    <div class="mdl-grid site-max-width">
+        <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp page-content">
+                <!-- TODO EN CONSTRUCTION -->
+                <div *ngIf="buildPage">
+                    <div class="page-build">
+                        <img class="article-image-view-page" src="../../../assets/front/img/page_build.png" border="0" alt="page en construction">
+                        <div class="page-not-found-description">
+                            page actuellement en construction!
+                        </div>
+                    </div>
+                </div>
+                <!-- TODO FIN -->
+
+                <div *ngIf=!buildPage>
+
+                <div class="mdl-card__title">
+                    <h1 class="mdl-card__title-text">
+                        Modification d'un CV
+                    </h1>
+                </div>
+                
+                <div class="mdl-card__media">
+                    <img class="article-image" src="../../assets/front/img/contact.jpg" border="0" alt="Profil">
+                </div>
+                
+                <div class = "mdl-tabs mdl-js-tabs">
+                    <div class = "mdl-tabs__tab-bar">
+                        <a href = "#tab1-panel" class = "mdl-tabs__tab is-active">CV</a>
+                        <a href = "#tab2-panel" class = "mdl-tabs__tab">Formation</a>
+                        <a href = "#tab3-panel" class = "mdl-tabs__tab">Compétence</a>
+                        <a href = "#tab4-panel" class = "mdl-tabs__tab">Expérience</a>
+                        <a href = "#tab5-panel" class = "mdl-tabs__tab">Linguistique</a>
+                        <a href = "#tab6-panel" class = "mdl-tabs__tab">Loisir</a>
+                    </div>
+                
+                    <div class="mdl-grid site-copy">
+                        <div class="mdl-cell mdl-cell--12-col">
+                            <div class="mdl-card__supporting-text">
+                                
+                                <p></p>
+
+                                <!-- Error general -->
+                                <span *ngIf="error" class="error-message">
+                                    {{error}}
+                                </span>
+
+                                <form [formGroup]="cvForm" method="POST" class="form-contact" enctype="multipart/form-data"  (ngSubmit)="onSubmit(cvForm.value)">
+
+                                    <div class = "mdl-tabs__panel is-active" id = "tab1-panel">
+
+                                        <input class="mdl-textfield__input" 
+                                        type="text"
+                                        formControlName="cv_user_id"
+                                        name="cv_user_id">
+
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                            <input class="mdl-textfield__input" 
+                                            type="text"
+                                            formControlName="cv_adresse"
+                                            name="cv_adresse">
+                                            <label class="mdl-textfield__label" for="cv_adresse">Adresse ...</label>
+                                        </div>
+
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                            <input class="mdl-textfield__input" 
+                                            type="text"
+                                            formControlName="cv_ville"
+                                            name="cv_ville">
+                                            <label class="mdl-textfield__label" for="cv_ville">Ville ...</label>
+                                        </div>
+
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                            <input class="mdl-textfield__input" 
+                                            type="text"
+                                            formControlName="cv_situation"
+                                            name="cv_situation">
+                                            <label class="mdl-textfield__label" for="cv_situation">Situation ...</label>
+                                        </div>
+
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                            <input class="mdl-textfield__input" 
+                                            type="text"
+                                            formControlName="cv_nationalite"
+                                            name="cv_nationalite">
+                                            <label class="mdl-textfield__label" for="cv_nationalite">Nationalite ...</label>
+                                        </div>
+
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                            <input class="mdl-textfield__input" 
+                                            type="text"
+                                            formControlName="cv_permis"
+                                            name="cv_permis">
+                                            <label class="mdl-textfield__label" for="cv_permis">Permis ...</label>
+                                        </div>
+
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                            <input class="mdl-textfield__input" 
+                                            type="text"
+                                            formControlName="cv_titre"
+                                            name="cv_titre">
+                                            <label class="mdl-textfield__label" for="cv_titre">Titre ...</label>
+                                        </div>
+
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                            <textarea 
+                                            class="mdl-textfield__input" 
+                                            type="text" 
+                                            rows= "3" 
+                                            formControlName="cv_description"
+                                            name="cv_description"></textarea>
+                                            <label class="mdl-textfield__label" for="cv_description">Description ...</label>
+                                        </div>
+
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                            <input class="mdl-textfield__input" 
+                                            type="number"
+                                            formControlName="cv_mobile"
+                                            name="cv_mobile">
+                                            <label class="mdl-textfield__label" for="cv_mobile">Mobile ...</label>
+                                        </div>
+
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                            <input class="mdl-textfield__input" 
+                                            type="email"
+                                            formControlName="cv_email"
+                                            name="cv_email">
+                                            <label class="mdl-textfield__label" for="cv_email">Email ...</label>
+                                        </div>
+
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                            <input class="mdl-textfield__input" 
+                                            type="file"
+                                            name="filename"
+                                            id="filename"
+                                            (change)="onFileSelected($event)">
+                                            <label class="mdl-textfield__label" for="file">Votre Photo ...</label>
+                                        </div>
+
+                                    </div>
+
+                                    <div class = "mdl-tabs__panel" id = "tab2-panel">
+
+                                        <!-- FORMATION TITRE -->
+                                        <div formArrayName="formation_titre">
+                                            <div *ngFor="let formationElementControla of getFormation_titre().controls; let a = index">
+                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                                    <input class="mdl-textfield__input" 
+                                                    type="text"
+                                                    [formControlName]="a"
+                                                    name="formation_titre_{{a+1}}">
+                                                    <label class="mdl-textfield__label" for="formation_titre_{{a+1}}">Titre ...</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent mdl-cell mdl-cell--8-col" type="button" (click)="onAddFormation_titre()"><i class="material-icons">plus_one</i>&nbsp;Formation titre</button>
+
+                                        <!-- FORMATION DATE DEBUT -->
+                                        <div formArrayName="formation_date_debut">
+                                            <div *ngFor="let formationElementControlb of getFormation_date_debut().controls; let b = index">
+                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                                    <input class="mdl-textfield__input" 
+                                                    type="date"
+                                                    [formControlName]="b"
+                                                    name="formation_date_debut_{{b+1}}">
+                                                    <label class="mdl-textfield__label" for="formation_date_debut_{{b+1}}">Date de début ...</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent mdl-cell mdl-cell--8-col" type="button" (click)="onAddFormation_date_debut()"><i class="material-icons">plus_one</i>&nbsp;Formation date début</button>
+
+                                        <!-- FORMATION DATE FIN -->
+                                        <div formArrayName="formation_date_fin">
+                                            <div *ngFor="let formationElementControlc of getFormation_date_fin().controls; let c = index">
+                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                                    <input class="mdl-textfield__input" 
+                                                    type="date"
+                                                    [formControlName]="c"
+                                                    name="formation_date_fin_{{c+1}}">
+                                                    <label class="mdl-textfield__label" for="formation_date_fin_{{c+1}}">Date de fin ...</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent mdl-cell mdl-cell--8-col" type="button" (click)="onAddFormation_date_fin()"><i class="material-icons">plus_one</i>&nbsp;Formation date fin</button>
+
+                                        <!-- FORMATION SUJET -->
+                                        <div formArrayName="formation_sujet">
+                                            <div *ngFor="let formationElementControld of getFormation_sujet().controls; let d = index">
+                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                                    <input class="mdl-textfield__input" 
+                                                    type="text"
+                                                    [formControlName]="d"
+                                                    name="formation_sujet_{{d+1}}">
+                                                    <label class="mdl-textfield__label" for="formation_sujet_{{d+1}}">Sujet ...</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent mdl-cell mdl-cell--8-col" type="button" (click)="onAddFormation_sujet()"><i class="material-icons">plus_one</i>&nbsp;Formation sujet</button>
+
+                                        <!-- FORMATION ECOLE -->
+                                        <div formArrayName="formation_ecole">
+                                            <div *ngFor="let formationElementControle of getFormation_ecole().controls; let e = index">
+                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                                    <input class="mdl-textfield__input" 
+                                                    type="text"
+                                                    [formControlName]="e"
+                                                    name="formation_ecole_{{e+1}}">
+                                                    <label class="mdl-textfield__label" for="formation_ecole_{{e+1}}">Ecole ...</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent mdl-cell mdl-cell--8-col" type="button" (click)="onAddFormation_ecole()"><i class="material-icons">plus_one</i>&nbsp;Formation ecole</button>
+
+
+                                    </div>
+                                    
+                                    <div class = "mdl-tabs__panel" id = "tab3-panel">
+
+                                        <!-- Competence group ID -->
+                                        <div formArrayName="competence_competenceGroup_id">
+                                            <div *ngFor="let competenceElementControl of getCompetence_Group_id().controls; let i = index">
+                                                <div class="mdl-selectfield mdl-js-selectfield">
+                                                    <select  
+                                                    class="mdl-textfield__input"
+                                                    [formControlName]="i"
+                                                    name="competence_competenceGroup_id_{{i+1}}">
+                                                        <option value="Faible">Faible</option>
+                                                        <option value="Moyen">Moyen</option>
+                                                        <option value="Bon">Bon</option>
+                                                        <option value="Expert">Expert</option>
+                                                    </select>
+                                                    <label class="mdl-selectfield__label" for="competence_competenceGroup_id_{{i+1}}">Séléction du groupe de compétence</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent mdl-cell mdl-cell--8-col" type="button" (click)="onAddCompetence_group_id()"><i class="material-icons">plus_one</i>&nbsp;Competence Group ID</button>
+
+                                        <!-- Competence savoir -->
+                                        <div formArrayName="competence_savoir">
+                                            <div *ngFor="let competenceElementControl of getCompetence_savoir().controls; let i = index">
+                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                                    <input class="mdl-textfield__input" 
+                                                    type="text"
+                                                    [formControlName]="i"
+                                                    name="competence_savoir_{{i+1}}">
+                                                    <label class="mdl-textfield__label" for="competence_savoir_{{i+1}}">Savoir ...</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent mdl-cell mdl-cell--8-col" type="button" (click)="onAddCompetence_savoir()"><i class="material-icons">plus_one</i>&nbsp;Competence savoir</button>
+
+
+                                        <!-- Competence niveau -->
+                                        <div formArrayName="competence_niveau">
+                                            <div *ngFor="let competenceElementControl of getCompetence_niveau().controls; let i = index">
+                                                <div class="mdl-selectfield mdl-js-selectfield">
+                                                    <select  
+                                                    class="mdl-textfield__input"
+                                                    [formControlName]="i"
+                                                    name="competence_niveau_{{i+1}}">
+                                                        <option value="Faible">Faible</option>
+                                                        <option value="Moyen">Moyen</option>
+                                                        <option value="Bon">Bon</option>
+                                                        <option value="Expert">Expert</option>
+                                                    </select>
+                                                    <label class="mdl-selectfield__label" for="competence_niveau_{{i+1}}">Séléction du niveau</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent mdl-cell mdl-cell--8-col" type="button" (click)="onAddCompetence_niveau()"><i class="material-icons">plus_one</i>&nbsp;Competence niveau</button>
+
+
+                                    </div>
+
+
+                                    <div class = "mdl-tabs__panel" id = "tab4-panel">
+                                        
+                                        <!-- Expérience titre -->
+                                        <div formArrayName="experience_titre">
+                                            <div *ngFor="let experienceElementControl of getExperience_titre().controls; let i = index">
+                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                                    <input class="mdl-textfield__input" 
+                                                    type="text"
+                                                    [formControlName]="i"
+                                                    name="experience_titre_{{i+1}}">
+                                                    <label class="mdl-textfield__label" for="experience_titre_{{i+1}}">Titre ...</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent mdl-cell mdl-cell--8-col" type="button" (click)="onAddExperience_titre()"><i class="material-icons">plus_one</i>&nbsp;Competence titre</button>
+
+                                        <!-- Expérience date debut -->
+                                        <div formArrayName="experience_date_debut">
+                                            <div *ngFor="let experienceElementControl of getExperience_date_debut().controls; let i = index">
+                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                                    <input class="mdl-textfield__input" 
+                                                    type="date"
+                                                    [formControlName]="i"
+                                                    name="experience_date_debut_{{i+1}}">
+                                                    <label class="mdl-textfield__label" for="experience_date_debut_{{i+1}}">Date de début ...</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent mdl-cell mdl-cell--8-col" type="button" (click)="onAddExperience_date_debut()"><i class="material-icons">plus_one</i>&nbsp;Competence date debut</button>
+
+                                        <!-- Expérience date fin -->
+                                        <div formArrayName="experience_date_fin">
+                                            <div *ngFor="let experienceElementControl of getExperience_date_fin().controls; let i = index">
+                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                                    <input class="mdl-textfield__input" 
+                                                        type="date"
+                                                        [formControlName]="i"
+                                                        name="experience_date_fin_{{i+1}}">
+                                                    <label class="mdl-textfield__label" for="experience_date_fin_{{i+1}}">Date de fin ...</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent mdl-cell mdl-cell--8-col" type="button" (click)="onAddExperience_date_fin()"><i class="material-icons">plus_one</i>&nbsp;Competence date fin</button>
+
+                                        <!-- Expérience sujet -->
+                                        <div formArrayName="experience_sujet">
+                                            <div *ngFor="let experienceElementControl of getExperience_sujet().controls; let i = index">
+                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                                    <input class="mdl-textfield__input" 
+                                                    type="text"
+                                                    [formControlName]="i"
+                                                    name="experience_sujet_{{i+1}}">
+                                                    <label class="mdl-textfield__label" for="experience_sujet_{{i+1}}">Sujet ...</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent mdl-cell mdl-cell--8-col" type="button" (click)="onAddExperience_sujet()"><i class="material-icons">plus_one</i>&nbsp;Competence sujet</button>
+
+                                        <!-- Expérience description -->
+                                        <div formArrayName="experience_description">
+                                            <div *ngFor="let experienceElementControl of getExperience_description().controls; let i = index">
+                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                                    <textarea 
+                                                    class="mdl-textfield__input" 
+                                                    type="text" 
+                                                    [formControlName]="i"
+                                                    rows= "3" 
+                                                    name="experience_description_{{i+1}}"></textarea>
+                                                    <label class="mdl-textfield__label" for="experience_description_{{i+1}}">Description ...</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent mdl-cell mdl-cell--8-col" type="button" (click)="onAddExperience_description()"><i class="material-icons">plus_one</i>&nbsp;Competence description</button>
+
+                                        <!-- Expérience contrat -->
+                                        <div formArrayName="experience_contrat">
+                                            <div *ngFor="let experienceElementControl of getExperience_contrat().controls; let i = index">
+                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                                    <input class="mdl-textfield__input" 
+                                                    type="text"
+                                                    [formControlName]="i"
+                                                    name="experience_contrat_{{i+1}}">
+                                                    <label class="mdl-textfield__label" for="experience_contrat_{{i+1}}">contrat ...</label>
+                                                </div>
+                                            </div> 
+                                        </div>
+                                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent mdl-cell mdl-cell--8-col" type="button" (click)="onAddExperience_contrat()"><i class="material-icons">plus_one</i>&nbsp;Competence contrat</button>
+
+                                    </div>
+
+                                    <div class = "mdl-tabs__panel" id = "tab5-panel">
+                                        
+                                        <!-- Linguistique Langue -->
+                                        <div formArrayName="competenceLinguistique_langue">
+                                            <div *ngFor="let linguistiqueElementControl of getCompetenceLinguistique_langue().controls; let i = index">
+                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                                    <input class="mdl-textfield__input" 
+                                                    type="text"
+                                                    [formControlName]="i"
+                                                    name="competenceLinguistique_langue_{{i+1}}">
+                                                    <label class="mdl-textfield__label" for="competenceLinguistique_langue_{{i+1}}">langue ...</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent mdl-cell mdl-cell--8-col" type="button" (click)="onAddCompetenceLinguistique_langue()"><i class="material-icons">plus_one</i>&nbsp;Competence linguistique langue</button>
+
+                                        <!-- Linguistique Niveau -->
+                                        <div formArrayName="competenceLinguistique_niveau">
+                                            <div *ngFor="let linguistiqueElementControl of getCompetenceLinguistique_niveau().controls; let i = index">
+                                                <div class="mdl-selectfield mdl-js-selectfield">
+                                                    <select  
+                                                    class="mdl-textfield__input"
+                                                    [formControlName]="i"
+                                                    name="competenceLinguistique_niveau_{{i+1}}">
+                                                        <option value="Faible">Faible</option>
+                                                        <option value="Moyen">Moyen</option>
+                                                        <option value="Bon">Bon</option>
+                                                        <option value="Expert">Expert</option>
+                                                    </select>
+                                                    <label class="mdl-selectfield__label" for="competenceLinguistique_niveau_{{i+1}}">Séléction du niveau</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent mdl-cell mdl-cell--8-col" type="button" (click)="onAddCompetenceLinguistique_niveau()"><i class="material-icons">plus_one</i>&nbsp;Competence linguistique niveau</button>
+
+                                    </div>
+
+                                    <div class = "mdl-tabs__panel" id = "tab6-panel">
+                                        
+                                        <!-- Loisir Name -->
+                                        <div formArrayName="loisir_loisir">
+                                            <div *ngFor="let loisirElementControl of getLoisir().controls; let i = index">
+                                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                                    <input class="mdl-textfield__input" 
+                                                    type="text"
+                                                    [formControlName]="i"
+                                                    name="loisir_loisir_{{i+1}}">
+                                                    <label class="mdl-textfield__label" for="loisir_loisir_{{i+1}}">loisir ...</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent mdl-cell mdl-cell--8-col" type="button" (click)="onAddLoisir()"><i class="material-icons">plus_one</i>&nbsp;loisir</button>
+
+                                    </div>
+                                        
+                                    <p>
+                                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent mdl-cell--12-col" type="submit">
+                                            Valider
+                                        </button>
+                                    </p>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

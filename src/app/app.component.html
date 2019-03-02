@@ -1,0 +1,88 @@
+<!-- NAVBAR -->
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  <a routerLink="contact" id="contact-button" class="mdl-button mdl-button--fab mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast mdl-shadow--4dp">
+    <i class="material-icons">mail</i>
+  </a>
+  
+  <header class="mdl-layout__header mdl-layout__header--waterfall site-header">
+    <div class="mdl-layout__header-row site-logo-row">
+      <span class="mdl-layout__title">
+        <div class="site-logo"></div>
+        <span class="site-description">Bilel Bekkouche</span>
+      </span>
+    </div>
+    
+    <div class="mdl-layout__header-row site-navigation-row mdl-layout--large-screen-only">
+      <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
+        <a class="mdl-navigation__link" routerLink="bilel-bekkouche">Home</a>
+        <a class="mdl-navigation__link" routerLink="portfolios">Portfolio</a>
+        <a class="mdl-navigation__link" routerLink="cv">CV</a>
+        <a class="mdl-navigation__link" href="">About</a>
+        <a class="mdl-navigation__link" routerLink="contact">Contact</a>
+
+        <div *ngIf="user == null || user == undefined">
+          <a class="mdl-navigation__link" routerLink="login">Login</a>
+        </div>
+        <div *ngIf="user">
+          <!-- Right aligned menu below button -->  
+          <button id="demo-menu-top-right"
+          class="mdl-button mdl-js-button mdl-button--icon">
+            <i class="material-icons">more_vert</i>
+          </button>
+
+          <ul class="mdl-menu mdl-menu--top-right mdl-js-menu mdl-js-ripple-effect"
+          for="demo-menu-top-right">
+            <li class="mdl-menu__item">
+              <a routerLink="profil/{{user.id}}" class="mdl-navigation__link" style="color: #000;">Mon profil</a>
+            </li>
+            <li class="mdl-menu__item">      
+              <a href="" class="mdl-navigation__link" style="color: #000;">Admin</a>
+            </li>
+            <li class="mdl-menu__item">
+              <a style="color: #000;" class="mdl-navigation__link" (click)="logout()">Logout</a>          
+            </li>
+          </ul>
+
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="mdl-layout__drawer mdl-layout--small-screen-only">
+    <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
+        <a class="mdl-navigation__link" routerLink="bilel-bekkouche">Home</a>
+        <a class="mdl-navigation__link" routerLink="portfolios">Portfolio</a>
+        <a class="mdl-navigation__link" routerLink="cv">CV</a>
+        <a class="mdl-navigation__link" href="">About</a>
+        <a class="mdl-navigation__link" routerLink="contact">Contact</a>
+
+        <div *ngIf="user == null || user == undefined">
+          <a class="mdl-navigation__link" routerLink="login">Login</a>
+        </div>
+        <div *ngIf="user">
+          <a routerLink="profil/{{user.id}}" class="mdl-navigation__link" >Mon profil</a>          
+          <a class="mdl-navigation__link" >Admin</a>
+          <a href="" class="mdl-navigation__link" (click)="logout()">déconnection</a>
+        </div>
+    </nav>
+  </div>
+
+  <main class="mdl-layout__content">
+
+
+  <!-- Contenu des composants -->
+  <router-outlet></router-outlet>
+
+
+  <!-- FOOTER -->
+    <footer class="mdl-mini-footer">
+      <div class="footer-container">
+        <div class="mdl-logo">&copy; 2018 created by Bilel Bekkouche</div>
+        <ul class="mdl-mini-footer__link-list">
+          <li><a href="#">Privacy & Terms</a></li>
+        </ul>
+      </div>
+    </footer>
+  
+  </main>
+</div>

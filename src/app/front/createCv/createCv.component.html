@@ -1,0 +1,341 @@
+<div class="site-content">
+    <div class="mdl-grid site-max-width">
+        <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp page-content">
+            <div class="mdl-card__title">
+                <h1 class="mdl-card__title-text">
+                    Création d'un CV
+                </h1>
+            </div>
+            
+            <div class="mdl-card__media">
+                <img class="article-image" src="../../assets/front/img/contact.jpg" border="0" alt="Profil">
+            </div>
+            
+            <div class = "mdl-tabs mdl-js-tabs">
+                <div class = "mdl-tabs__tab-bar">
+                    <a href = "#tab1-panel" class = "mdl-tabs__tab is-active">CV</a>
+                    <a href = "#tab2-panel" class = "mdl-tabs__tab">Formation</a>
+                    <a href = "#tab3-panel" class = "mdl-tabs__tab">Compétence</a>
+                    <a href = "#tab4-panel" class = "mdl-tabs__tab">Expérience</a>
+                    <a href = "#tab5-panel" class = "mdl-tabs__tab">Linguistique</a>
+                    <a href = "#tab6-panel" class = "mdl-tabs__tab">Loisir</a>
+                </div>
+            
+                <div class="mdl-grid site-copy">
+                    <div class="mdl-cell mdl-cell--12-col">
+                        <div class="mdl-card__supporting-text">
+                            
+                            <p></p>
+
+                            <!-- Error general -->
+                            <span *ngIf="error" class="error-message">
+                                {{error}}
+                            </span>
+
+                            <form method="POST" class="form-contact" (ngSubmit)="onSubmit(user_id, adresse, ville, situation, nationalite, permis, titre, description, mobile, email, media_id)" #portfolioForm="ngForm" enctype="multipart/form-data">
+
+                                <div class = "mdl-tabs__panel is-active" id = "tab1-panel">
+
+                                    <input class="mdl-textfield__input" 
+                                    type="hidden"
+                                    [(ngModel)]="user_id"
+                                    name="user_id"
+                                    #name="ngModel">
+
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" 
+                                        type="text"
+                                        [(ngModel)]="adresse"
+                                        name="adresse"
+                                        #name="ngModel">
+                                        <label class="mdl-textfield__label" for="adresse">Adresse ...</label>
+                                    </div>
+
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" 
+                                        type="text"
+                                        [(ngModel)]="ville"
+                                        name="ville"
+                                        #name="ngModel">
+                                        <label class="mdl-textfield__label" for="ville">Ville ...</label>
+                                    </div>
+
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" 
+                                        type="text"
+                                        [(ngModel)]="situation"
+                                        name="situation"
+                                        #name="ngModel">
+                                        <label class="mdl-textfield__label" for="situation">Situation ...</label>
+                                    </div>
+
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" 
+                                        type="text"
+                                        [(ngModel)]="nationalite"
+                                        name="nationalite"
+                                        #name="ngModel">
+                                        <label class="mdl-textfield__label" for="nationalite">Nationalite ...</label>
+                                    </div>
+
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" 
+                                        type="text"
+                                        [(ngModel)]="permis"
+                                        name="permis"
+                                        #name="ngModel">
+                                        <label class="mdl-textfield__label" for="permis">Permis ...</label>
+                                    </div>
+
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" 
+                                        type="text"
+                                        [(ngModel)]="titre"
+                                        name="titre"
+                                        #name="ngModel">
+                                        <label class="mdl-textfield__label" for="titre">Titre ...</label>
+                                    </div>
+
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <textarea 
+                                        class="mdl-textfield__input" 
+                                        type="text" 
+                                        rows= "3" 
+                                        [(ngModel)]="description"
+                                        name="description"
+                                        #name="ngModel"></textarea>
+                                        <label class="mdl-textfield__label" for="description">Description ...</label>
+                                    </div>
+
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" 
+                                        type="number"
+                                        [(ngModel)]="mobile"
+                                        name="mobile"
+                                        #name="ngModel">
+                                        <label class="mdl-textfield__label" for="mobile">Mobile ...</label>
+                                    </div>
+
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" 
+                                        type="email"
+                                        [(ngModel)]="email"
+                                        name="email"
+                                        #name="ngModel">
+                                        <label class="mdl-textfield__label" for="email">Email ...</label>
+                                    </div>
+
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" 
+                                        type="file"
+                                        name="filename"
+                                        id="filename"
+                                        (change)="onFileSelected($event)">
+                                        <label class="mdl-textfield__label" for="file">Votre Photo ...</label>
+                                    </div>
+
+                                </div>
+
+                                <div class = "mdl-tabs__panel" id = "tab2-panel">
+
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" 
+                                        type="text"
+                                        [(ngModel)]="titre"
+                                        name="titre"
+                                        #name="ngModel">
+                                        <label class="mdl-textfield__label" for="titre">Titre ...</label>
+                                    </div>
+
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" 
+                                        type="date"
+                                        [(ngModel)]="date_debut"
+                                        name="date_debut"
+                                        #name="ngModel">
+                                        <label class="mdl-textfield__label" for="date_debut">Date de début ...</label>
+                                    </div>
+        
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" 
+                                        type="date"
+                                        [(ngModel)]="date_fin"
+                                        name="date_fin"
+                                        #name="ngModel">
+                                        <label class="mdl-textfield__label" for="date_fin">Date de fin ...</label>
+                                    </div>
+
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" 
+                                        type="text"
+                                        [(ngModel)]="sujet"
+                                        name="sujet"
+                                        #name="ngModel">
+                                        <label class="mdl-textfield__label" for="sujet">Sujet ...</label>
+                                    </div>
+
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" 
+                                        type="text"
+                                        [(ngModel)]="ecole"
+                                        name="ecole"
+                                        #name="ngModel">
+                                        <label class="mdl-textfield__label" for="ecole">Ecole ...</label>
+                                    </div>
+
+                                </div>
+                                  
+                                <div class = "mdl-tabs__panel" id = "tab3-panel">
+                                    
+                                    <div class="mdl-selectfield mdl-js-selectfield">
+                                        <select  
+                                        class="mdl-textfield__input"
+                                        [(ngModel)]="competenceGroup_id"
+                                        name="competenceGroup_id"
+                                        #name="ngModel">
+                                            <option value="Faible">Faible</option>
+                                            <option value="Moyen">Moyen</option>
+                                            <option value="Bon">Bon</option>
+                                            <option value="Expert">Expert</option>
+                                        </select>
+                                        <label class="mdl-selectfield__label" for="competenceGroup_id">Séléction du groupe de compétence</label>
+                                    </div>
+
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" 
+                                        type="text"
+                                        [(ngModel)]="savoir"
+                                        name="savoir"
+                                        #name="ngModel">
+                                        <label class="mdl-textfield__label" for="savoir">Savoir ...</label>
+                                    </div>
+
+                                    <div class="mdl-selectfield mdl-js-selectfield">
+                                        <select  
+                                        class="mdl-textfield__input"
+                                        [(ngModel)]="niveau"
+                                        name="niveau"
+                                        #name="ngModel">
+                                            <option value="Faible">Faible</option>
+                                            <option value="Moyen">Moyen</option>
+                                            <option value="Bon">Bon</option>
+                                            <option value="Expert">Expert</option>
+                                        </select>
+                                        <label class="mdl-selectfield__label" for="niveau">Séléction du niveau</label>
+                                    </div>
+
+                                </div>
+
+                                <div class = "mdl-tabs__panel" id = "tab4-panel">
+                                        
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" 
+                                        type="text"
+                                        [(ngModel)]="titre"
+                                        name="titre"
+                                        #name="ngModel">
+                                        <label class="mdl-textfield__label" for="titre">Titre ...</label>
+                                    </div>
+
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" 
+                                        type="date"
+                                        [(ngModel)]="date_debut"
+                                        name="date_debut"
+                                        #name="ngModel">
+                                        <label class="mdl-textfield__label" for="date_debut">Date de début ...</label>
+                                    </div>
+            
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" 
+                                            type="date"
+                                            [(ngModel)]="date_fin"
+                                            name="date_fin"
+                                            #name="ngModel">
+                                        <label class="mdl-textfield__label" for="date_fin">Date de fin ...</label>
+                                    </div>
+
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" 
+                                        type="text"
+                                        [(ngModel)]="sujet"
+                                        name="sujet"
+                                        #name="ngModel">
+                                        <label class="mdl-textfield__label" for="sujet">Sujet ...</label>
+                                    </div>
+
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <textarea 
+                                        class="mdl-textfield__input" 
+                                        type="text" 
+                                        rows= "3" 
+                                        [(ngModel)]="description"
+                                        name="description"
+                                        #name="ngModel"></textarea>
+                                        <label class="mdl-textfield__label" for="description">Description ...</label>
+                                    </div>
+
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" 
+                                        type="text"
+                                        [(ngModel)]="contrat"
+                                        name="contrat"
+                                        #name="ngModel">
+                                        <label class="mdl-textfield__label" for="contrat">contrat ...</label>
+                                    </div>
+
+                                </div>
+
+                                <div class = "mdl-tabs__panel" id = "tab5-panel">
+                                    
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" 
+                                        type="text"
+                                        [(ngModel)]="langue"
+                                        name="langue"
+                                        #name="ngModel">
+                                        <label class="mdl-textfield__label" for="langue">langue ...</label>
+                                    </div>
+
+                                    <div class="mdl-selectfield mdl-js-selectfield">
+                                        <select  
+                                        class="mdl-textfield__input"
+                                        [(ngModel)]="niveau"
+                                        name="niveau"
+                                        #name="ngModel">
+                                            <option value="Faible">Faible</option>
+                                            <option value="Moyen">Moyen</option>
+                                            <option value="Bon">Bon</option>
+                                            <option value="Expert">Expert</option>
+                                        </select>
+                                        <label class="mdl-selectfield__label" for="niveau">Séléction du niveau</label>
+                                    </div>
+
+                                </div>
+
+                                <div class = "mdl-tabs__panel" id = "tab6-panel">
+                                    
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" 
+                                        type="text"
+                                        [(ngModel)]="loisir"
+                                        name="loisir"
+                                        #name="ngModel">
+                                        <label class="mdl-textfield__label" for="loisir">loisir ...</label>
+                                    </div>
+
+                                </div>
+                                    
+                                <p>
+                                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent mdl-cell--12-col" [disabled]="!portfolioForm.form.valid" type="submit">
+                                        Valider
+                                    </button>
+                                </p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

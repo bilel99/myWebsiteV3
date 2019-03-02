@@ -1,0 +1,9 @@
+.avatar-profil-circle {
+    position: absolute;
+    width: auto;
+    height: auto;
+    max-width: 30%;
+    margin-top: -25%;
+    margin-left: 35%;
+    border-radius: 1000px;
+}
