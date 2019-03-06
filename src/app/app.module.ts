@@ -37,16 +37,18 @@ import { CreateCvService } from './front/createCv/createCv.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BlogComponent } from './front/blog/blog.component';
 import { BlogService } from './front/blog/blog.service';
+import { EditBlogComponent } from './front/editBlog/editBlog.component';
+import { EditBlogService } from './front/editBlog/editBlog.service';
 
 
 @NgModule({
   declarations: [
-    AppComponent, AccueilComponent, LoginComponent, PageNotFoundComponent, RegisterComponent, ForgotComponent, ForgotStepFinalComponent, ContactComponent, AccountComponent, PortfolioComponent, TruncatePipe, ShowPortfolioComponent, CreatePortfolioComponent, EditPortfolioComponent, ShowCvComponent, CalcLevelPipe, EditCvComponent, CreateCvComponent, BlogComponent
+    AppComponent, AccueilComponent, LoginComponent, PageNotFoundComponent, RegisterComponent, ForgotComponent, ForgotStepFinalComponent, ContactComponent, AccountComponent, PortfolioComponent, TruncatePipe, ShowPortfolioComponent, CreatePortfolioComponent, EditPortfolioComponent, ShowCvComponent, CalcLevelPipe, EditCvComponent, CreateCvComponent, BlogComponent, EditBlogComponent
   ],
   imports: [
     BrowserModule, Ng2IziToastModule, AppRoutingModule, FormsModule, HttpModule, ReactiveFormsModule
   ],
-  providers: [LoginService, RegisterService, ForgotService, ContactService, AccountService, PortfolioService, ShowPortfolioService, CreatePortfolioService, EditPortfolioService, ShowCvService, EditCvService, CreateCvService, BlogService],
+  providers: [LoginService, RegisterService, ForgotService, ContactService, AccountService, PortfolioService, ShowPortfolioService, CreatePortfolioService, EditPortfolioService, ShowCvService, EditCvService, CreateCvService, BlogService, EditBlogService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

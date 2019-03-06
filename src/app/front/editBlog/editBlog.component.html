@@ -1,0 +1,159 @@
+<div class="site-content">
+    <div class="mdl-grid site-max-width">
+        <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp page-content">
+            <div class="mdl-card__title">
+                <h1 class="mdl-card__title-text">
+                    Edition d'un blog
+                </h1>
+            </div>
+            
+            <div class="mdl-card__media">
+                <img class="article-image" src="../../assets/front/img/contact.jpg" border="0" alt="Profil">
+                <div *ngIf="avatar">
+                    <img class="avatar-profil-circle responsive-img" src="../../../assets/front/img/contact.jpg" alt="Edition Blog">
+                </div>
+            </div>
+            
+            <div class="mdl-grid site-copy">
+                <div class="mdl-cell mdl-cell--12-col">
+                    <div class="mdl-card__supporting-text">
+                        
+                        <p></p>
+
+                        <!-- Error general -->
+                        <span *ngIf="error" class="error-message">
+                            {{error}}
+                        </span>
+
+                        <form method="POST" class="form-contact" (ngSubmit)="onSubmit(user_id, titre, introduction, description, filename, filename2, filename3)" #blogForm="ngForm" enctype="multipart/form-data">
+
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" 
+                                type="text"
+                                [(ngModel)]="titre"
+                                name="titre"
+                                #name="ngModel">
+                                <label class="mdl-textfield__label" for="titre">titre ...</label>
+                            </div>
+
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <textarea 
+                                class="mdl-textfield__input" 
+                                type="text" 
+                                rows= "3" 
+                                [(ngModel)]="introduction"
+                                name="introduction"
+                                #name="ngModel"></textarea>
+                                <label class="mdl-textfield__label" for="introduction">introduction ...</label>
+                            </div>
+
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <textarea 
+                                class="mdl-textfield__input" 
+                                type="text" 
+                                rows= "3" 
+                                [(ngModel)]="description"
+                                name="description"
+                                #name="ngModel"></textarea>
+                                <label class="mdl-textfield__label" for="description">description ...</label>
+                            </div>
+
+                            <!-- Affichage des images avec un lien qui appelle la methode RemoveFile -->
+                            <div *ngFor="let row of blog">
+                                <div *ngIf="row.media.length == 0">
+                                    <p> Aucune image existante sur ce post! </p>
+                                </div>
+                                <div *ngIf="row.media.length != 0">
+                                    <p> {{row.media.length}} {{row.media.length > 1 ? 'images existantes' : 'image existante'}} </p>
+                                    
+                                    <!-- Image card *ngFor="let media of row.media" -->
+                                    <div *ngFor="let key of objectKeys(row.media)">
+                                        
+                                        <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-shadow--2dp" id="bloc_image_{{key}}">
+                                            <figure class="mdl-card__media">
+                                                <img 
+                                                class="img-responsive"
+                                                id = "image_blog_{{key}}"
+                                                src="{{ row.media[key].filename }}" 
+                                                border="0" 
+                                                alt="{{ row.media[key].nom }}"
+                                                >
+                                            </figure>
+                                            <div class="mdl-card__actions mdl-card--border">
+                                                <div class="mdl-layout-spacer"></div>
+                                                <span class="mdl-button mdl-button--icon mdl-button--colored" (click)="onRemoveFilename(row.id, key)"><i class="material-icons" id="material_icons_{{key}}">delete</i></span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" 
+                                type="file"
+                                name="filename"
+                                multiple
+                                (change)="onFileSelectedFilename($event)">
+                                <label class="mdl-textfield__label" for="file">insérer une/des image(s) ...</label>
+                            </div>
+
+
+
+                            <a id="button_addInputFile" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" (click)="onInputFile()">
+                                <i class="material-icons">add</i>
+                            </a>
+                            
+                            <div *ngIf="add_inputFile_one">
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input class="mdl-textfield__input" 
+                                    type="file"
+                                    name="filename2"
+                                    multiple
+                                    (change)="onFileSelectedFilename2($event)">
+                                    <label class="mdl-textfield__label" for="file">insérer une/des image(s) ...</label>
+                                </div>
+                            </div>
+
+                            <div *ngIf="add_inputFile_two">
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input class="mdl-textfield__input" 
+                                    type="file"
+                                    name="filename3"
+                                    multiple
+                                    (change)="onFileSelectedFilename3($event)">
+                                    <label class="mdl-textfield__label" for="file">insérer une/des image(s) ...</label>
+                                </div>
+                            </div>
+
+
+
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" 
+                                type="hidden"
+                                [(ngModel)]="user_id"
+                                name="user_id"
+                                #name="ngModel">
+                            </div>
+
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" 
+                                type="hidden"
+                                [(ngModel)]="auto_increment"
+                                name="auto_increment"
+                                #name="ngModel">
+                            </div>
+                            
+                            <p>
+                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent mdl-cell--12-col" [disabled]="!blogForm.form.valid" type="submit">
+                                    Valider
+                                </button>
+                            </p>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

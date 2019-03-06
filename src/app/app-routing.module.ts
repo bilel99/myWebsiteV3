@@ -16,6 +16,7 @@ import { ShowCvComponent } from './front/showCv/showCv.component';
 import { EditCvComponent } from './front/editCv/editCv.component';
 import { CreateCvComponent } from './front/createCv/createCv.component';
 import { BlogComponent } from './front/blog/blog.component';
+import { EditBlogComponent } from './front/editBlog/editBlog.component';
 
 
 // routes
@@ -47,6 +48,8 @@ const appRoutes: Routes = [
 	{ path: 'edit-cv/:id', component: EditCvComponent },
 	// Route for BLOG Page
 	{ path: 'blog', component: BlogComponent },
+	// Route for Edit blog Page
+	{ path: 'edit-blog/:id', component: EditBlogComponent },
 	// Route for Error - Redirection and page not found
     { path: '', redirectTo: 'bilel-bekkouche', pathMatch: 'full' },
     { path: '**', component: PageNotFoundComponent }
